@@ -22,11 +22,11 @@ public class HomePage extends PageObject{
     }
 
     public void verifyNameIsUpdated(String updatedName) {
-        assert header.then(By.className("header_user_info")).getText().contains(updatedName);
+        assert getUserInfoFromHeader().getText().contains(updatedName);
     }
 
     public void goToAuthentication() {
-        header.then(By.className("header_user_info")).then(By.linkText("Sign in")).click();
+        getUserInfoFromHeader().then(By.linkText("Sign in")).click();
     }
 
     public void submitSearch() {
@@ -40,5 +40,9 @@ public class HomePage extends PageObject{
 
     public void goToMyOrders() {
         getDriver().findElement(By.linkText("My orders")).click();
+    }
+    
+    private WebElementFacade getUserInfoFromHeader(){
+        return header.then(By.className("header_user_info"));
     }
 }
